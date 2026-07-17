@@ -1,12 +1,6 @@
-//
-//  MPCManager.swift
-//  multipeer_connections
-//
-//  Created by NamIT on 9/3/20.
-//
-
 import Foundation
 import MultipeerConnectivity
+import UIKit
 
 class MPCManager: NSObject {
     
@@ -29,18 +23,6 @@ class MPCManager: NSObject {
     }
     
     var deviceDidChange: (() -> Void)?
-    
-    //    override init() {
-    //        if let data = UserDefaults.standard.data(forKey: "peerID"), let id = NSKeyedUnarchiver.unarchiveObject(with: data) as? MCPeerID {
-    //            self.localPeerID = id
-    //        } else {
-    //            let peerID = MCPeerID(displayName: UIDevice.current.name)
-    //            let data = NSKeyedArchiver.archivedData(withRootObject: peerID)
-    //            UserDefaults.standard.set(data, forKey: "peerID")
-    //            self.localPeerID = peerID
-    //        }
-    //        super.init()
-    //    }
     
     deinit{
         if let taskEnterBackground = enterbackgroundNotification {
@@ -159,22 +141,17 @@ extension MPCManager: MCNearbyServiceAdvertiserDelegate {
         let device = self.addNewDevice(for: peerID)
         device.createSession()
         invitationHandler(true, device.session)
-        //  Handle our incoming peer
     }
 }
 
 extension MPCManager: MCNearbyServiceBrowserDelegate {
     func browser(_ browser: MCNearbyServiceBrowser, foundPeer peerID: MCPeerID, withDiscoveryInfo info: [String : String]?) {
-        // found peer, create a device with this peerID
         addNewDevice(for: peerID)
     }
     
     func browser(_ browser: MCNearbyServiceBrowser, lostPeer peerID: MCPeerID) {
-        // lost peer, disconnect and remove the device with this peerID
         let device = self.findDevice(for: peerID)
         devices = devices.filter{$0.peerID.displayName != peerID.displayName}
         device?.disconnect()
     }
-    
-    
 }

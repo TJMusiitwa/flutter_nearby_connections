@@ -139,7 +139,7 @@ class NearbyService {
   /// Invites a discovered peer to join a nearby connections session.
   /// the [deviceID] is current Device
   FutureOr<dynamic> invitePeer(
-      {required String deviceID, @required String? deviceName}) async {
+      {required String deviceID, required String? deviceName}) async {
     await _channel.invokeMethod(
       _invitePeer,
       <String, dynamic>{

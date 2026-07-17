@@ -1,10 +1,3 @@
-//
-//  Message.swift
-//  multipeer_connections
-//
-//  Created by NamIT on 9/3/20.
-//
-
 import Foundation
 import SwiftyJSON
 
@@ -77,4 +70,3 @@ struct MessageItemCollection {
 enum MessageItemCollectionStatus: String {
     case active = "ACTIVE"
 }
-

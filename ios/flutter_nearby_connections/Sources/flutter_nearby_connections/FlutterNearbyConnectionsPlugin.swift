@@ -21,10 +21,10 @@ enum MethodCall: String {
     case sendMessage = "send_message"
 }
 
-public class SwiftFlutterNearbyConnectionsPlugin: NSObject, FlutterPlugin {
+public class FlutterNearbyConnectionsPlugin: NSObject, FlutterPlugin {
     public static func register(with registrar: FlutterPluginRegistrar) {
         let channel = FlutterMethodChannel(name: "flutter_nearby_connections", binaryMessenger: registrar.messenger())
-        let instance = SwiftFlutterNearbyConnectionsPlugin(channel: channel)
+        let instance = FlutterNearbyConnectionsPlugin(channel: channel)
         registrar.addMethodCallDelegate(instance, channel: channel)
     }
     
